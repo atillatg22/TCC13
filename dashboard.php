@@ -6,30 +6,36 @@
 <section class="home-section">
     <div class="text">Dashboard</div>
     <div class="dashboard">
-        <header>
-            <h1>Empréstimo de Chaves</h1>
-        </header>
         <main id="contagem-emprestimos-table">
             <div class="card">
                 <h2>Total de Alunos Cadastrados</h2>
-                <p id="total-alunos">0</p>
+                <p id="total-alunos"><?php
+        include 'db.php';
+        $sql = "SELECT COUNT(*) AS total_alunos FROM alunos";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        echo $row['total_alunos'];
+    ?></p>
             </div>
             <div class="card">
-                <h2>Total de Chaves Cadastradas</h2>
-                <p id="total-chaves">0</p>
-            </div>
+    <h2>Total de Chaves Cadastradas</h2>
+    <p id="total-chaves"><?php
+        include 'db.php';
+        $sql = "SELECT COUNT(*) AS total_chaves FROM chaves";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        echo $row['total_chaves'];
+    ?></p>
+</div>
             <div class="card">
                 <h2>Total de Empréstimos</h2>
                 <p id="total-emprestimos"><?php
-                    include 'db.php';
-                    $sql = "SELECT aluno_cpf, COUNT(*) AS qtd_emprestimos FROM emprestimos GROUP BY aluno_cpf";
-                    $result = $conn->query($sql);
-                    while ($row = $result->fetch_assoc()):
-                        ?>
-                        <tr>
-                            <td><?php echo $row['qtd_emprestimos']; ?></td>
-                        </tr>
-                    <?php endwhile; ?></p>
+        include 'db.php';
+        $sql = "SELECT COUNT(*) AS total_emprestimos FROM emprestimos";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        echo $row['total_emprestimos'];
+    ?></p>
             </div>
         </main>
     </div>
