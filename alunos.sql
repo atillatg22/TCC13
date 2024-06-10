@@ -17,7 +17,7 @@ CREATE TABLE chaves (
 CREATE TABLE emprestimos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     chave_id INT NOT NULL,
-    aluno_cpf VARCHAR(11) NOT NULL,
+    aluno_cpf VARCHAR(14) NOT NULL,
     data_emprestimo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (chave_id) REFERENCES chaves(id),
     FOREIGN KEY (aluno_cpf) REFERENCES alunos(cpf)

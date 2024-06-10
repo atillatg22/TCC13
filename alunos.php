@@ -167,6 +167,25 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function () {
+        // Função para formatar e validar o CPF
+        $('#add-cpf, #edit-cpf').on('input', function () {
+            var cpf = $(this).val().replace(/\D/g, '');
+            if (cpf.length > 11) {
+                cpf = cpf.slice(0, 11);
+            }
+            $(this).val(cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4"));
+        });
+
+        // Função para formatar e validar o telefone
+        $('#add-telefone, #edit-telefone').on('input', function () {
+            var telefone = $(this).val().replace(/\D/g, '');
+            if (telefone.length > 11) {
+                telefone = telefone.slice(0, 11);
+            }
+            $(this).val(telefone.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3"));
+        });
+    });
+    $(document).ready(function () {
         // Função para atualizar o status da chave
         function atualizarStatusChave(aluno_id) {
             $.ajax({
